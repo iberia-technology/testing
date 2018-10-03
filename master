@@ -1,0 +1,140 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Testing",
+    "description" : "Para realizar pruebas",
+    "version" : "1.0.0"
+  },
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/testing" : {
+      "get" : {
+        "description" : "Test"
+      },
+      "post" : { },
+      "delete" : { }
+    },
+    "/customers" : {
+      "get" : {
+        "summary" : "List All Customers",
+        "description" : "Gets a list of all `Customers` entities.",
+        "operationId" : "getCustomers",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Customers` entities.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Customers"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Customers",
+        "description" : "Creates a new instance of a `Customers`.",
+        "operationId" : "createCustomers",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "A new `Customers` to be created.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Customers"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/customers/{customersId}" : {
+      "get" : {
+        "summary" : "Get a Customers",
+        "description" : "Gets the details of a single instance of a `Customers`.",
+        "operationId" : "getCustomers",
+        "parameters" : [ {
+          "name" : "customersId",
+          "in" : "path",
+          "description" : "A unique identifier for a `Customers`.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Customers`.",
+            "schema" : {
+              "$ref" : "#/definitions/Customers"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Customers",
+        "description" : "Updates an existing `Customers`.",
+        "operationId" : "updateCustomers",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "Updated `Customers` information.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Customers"
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Customers",
+        "description" : "Deletes an existing `Customers`.",
+        "operationId" : "deleteCustomers",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customersId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Customers`.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "Customers" : {
+      "title" : "Root Type for Customers",
+      "description" : "The root of the Customers type's schema.",
+      "required" : [ "age", "name", "id" ],
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "surname" : {
+          "type" : "string"
+        },
+        "age" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      },
+      "example" : "{\n  \"id\":1\n,  \"name\": \"aaaaaaa\",\n    \"surname\": \"bbbbbb\",\n    \"edad\": 2\n}"
+    }
+  }
+}
